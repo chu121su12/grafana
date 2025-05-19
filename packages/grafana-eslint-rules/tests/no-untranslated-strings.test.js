@@ -167,6 +167,14 @@ ruleTester.run('eslint no-untranslated-strings', noUntranslatedStrings, {
       }`,
       filename,
     },
+    {
+      name: 'Object property at top level',
+      code: `
+const thing = {
+  label: 'test'
+}`,
+      filename,
+    },
   ],
   invalid: [
     /**

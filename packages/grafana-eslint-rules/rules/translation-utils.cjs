@@ -90,10 +90,8 @@ function canBeFixed(node, context) {
 
   // We can only fix JSX attribute strings that are within a function,
   // otherwise the `t` function call will be made too early
-  if (node.type === AST_NODE_TYPES.JSXAttribute) {
-    if (!parentMethod) {
-      return false;
-    }
+  if (!parentMethod && (node.type === AST_NODE_TYPES.JSXAttribute || node.type === AST_NODE_TYPES.Property)) {
+    return false;
   }
   if (node.type === AST_NODE_TYPES.JSXAttribute && node.value?.type === AST_NODE_TYPES.JSXExpressionContainer) {
     return isStringLiteral(node.value.expression);

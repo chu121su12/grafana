@@ -296,7 +296,6 @@ module.exports = [
       ...pluginsToTranslate.map((plugin) => `${plugin}/**/*.{ts,tsx,js,jsx}`),
     ],
     ignores: [
-      'public/app/plugins/**',
       '**/*.story.tsx',
       '**/*.{test,spec}.{ts,tsx}',
       '**/{tests,__mocks__,__tests__,fixtures}/**',
@@ -307,7 +306,10 @@ module.exports = [
       '**/mock*.{ts,tsx}',
     ],
     rules: {
-      '@grafana/no-untranslated-strings': ['error', { calleesToIgnore: ['^css$', 'use[A-Z].*'] }],
+      '@grafana/no-untranslated-strings': [
+        'error',
+        { forceFix: ['public/app'], calleesToIgnore: ['^css$', 'use[A-Z].*'] },
+      ],
       '@grafana/no-translation-top-level': 'error',
     },
   },
